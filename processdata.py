@@ -1,15 +1,11 @@
+"""Functions for data handling
+Returns:
+    _type_: _description_
+"""
 from collections import defaultdict
+import json
+import csv
 from ConstantVar import ConstantVar
-import json, csv
-
-CLIENT_INFO = ['CLIENT_TYPE', 'CLIENT_NUMBER',
-               'ACCOUNT_NUMBER', 'SUBACCOUNT_NUMBER']
-
-PRODUCT_INFO = ['EXCHANGE_CODE', 'PRODUCT_GROUP_CODE',
-                'SYMBOL', 'EXPIRATION_DATE']
-
-FIELD_NAMES = ['Client_Information', 'Product_Information',
-               'Total_Transaction_Amount']
 
 
 def parse_fixed_width_file(file_path: str, cfg: dict) -> list:
@@ -77,10 +73,10 @@ def generate_daily_summary(parsed_data: list) -> defaultdict:
 
     for record in parsed_data:
         client_info = tuple(
-            record[field] for field in CLIENT_INFO
+            record[field] for field in ConstantVar.CLIENT_INFO
         )
         product_info = tuple(
-            record[field] for field in PRODUCT_INFO
+            record[field] for field in ConstantVar.PRODUCT_INFO
         )
         quantity_long = int(record['QUANTITY_LONG'])
         quantity_short = int(record['QUANTITY_SHORT'])
@@ -92,14 +88,15 @@ def generate_daily_summary(parsed_data: list) -> defaultdict:
 
 
 def write_csv(report_data: dict):
-    """_summary_
+    """Generate CSV report file from the input report data dict
 
     Args:
         report_data (dict): _description_
     """
-    with open('Output.csv', 'w', encoding=ConstantVar.CFG_FILE_ENC,
+    with open(ConstantVar.OUTPUT_FILE, 'w',
+              encoding=ConstantVar.OUTPUT_FILE_ENC,
               newline='') as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames=FIELD_NAMES)
+        writer = csv.DictWriter(csvfile, fieldnames=ConstantVar.FIELD_NAMES)
         writer.writeheader()
 
         for client_info, products in report_data.items():
