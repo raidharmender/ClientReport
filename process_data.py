@@ -5,7 +5,7 @@ Returns:
 from collections import defaultdict
 import json
 import csv
-from ConstantVar import ConstantVar
+from constant_vars import ConstantVar
 
 
 def parse_fixed_width_file(file_path: str, cfg: dict) -> list:
@@ -19,12 +19,12 @@ def parse_fixed_width_file(file_path: str, cfg: dict) -> list:
         list: _description_
     """
     data = []
-    with open(file_path, 'r', encoding=ConstantVar.INPUT_FILE_ENC) as fd:
+    with open(file_path, "r", encoding=ConstantVar.INPUT_FILE_ENC) as fd:
         for line in fd:
             record = {}
             for field, specs in cfg.items():
-                start = specs['START'] - 1
-                end = specs['END']
+                start = specs["START"] - 1
+                end = specs["END"]
                 record[field] = line[start:end].strip()
             data.append(record)
     return data
@@ -39,7 +39,7 @@ def read_config(file: str) -> dict:
     Returns:
         dict: Dictionary data
     """
-    with open(file, 'r', encoding=ConstantVar.CFG_FILE_ENC) as f:
+    with open(file, "r", encoding=ConstantVar.CFG_FILE_ENC) as f:
         return json.load(f)
 
 
@@ -51,7 +51,7 @@ def verify_config(conf_data: dict) -> bool:
     """
     all_good = True
     for key, value in conf_data.items():
-        if value['LENGTH'] != value['END'] - value['START']:
+        if value["LENGTH"] != value["END"] - value["START"]:
             print(f"{key}:length, start and end data are not matching")
             all_good = False
     return all_good
@@ -72,14 +72,10 @@ def generate_daily_summary(parsed_data: list) -> defaultdict:
     summary = defaultdict(lambda: defaultdict(int))
 
     for record in parsed_data:
-        client_info = tuple(
-            record[field] for field in ConstantVar.CLIENT_INFO
-        )
-        product_info = tuple(
-            record[field] for field in ConstantVar.PRODUCT_INFO
-        )
-        quantity_long = int(record['QUANTITY_LONG'])
-        quantity_short = int(record['QUANTITY_SHORT'])
+        client_info = tuple(record[field] for field in ConstantVar.CLIENT_INFO)
+        product_info = tuple(record[field] for field in ConstantVar.PRODUCT_INFO)
+        quantity_long = int(record["QUANTITY_LONG"])
+        quantity_short = int(record["QUANTITY_SHORT"])
         total_amount = quantity_long - quantity_short
 
         summary[client_info][product_info] += total_amount
@@ -93,18 +89,20 @@ def write_csv(report_data: dict):
     Args:
         report_data (dict): _description_
     """
-    with open(ConstantVar.OUTPUT_FILE, 'w',
-              encoding=ConstantVar.OUTPUT_FILE_ENC,
-              newline='') as csvfile:
+    with open(
+        ConstantVar.OUTPUT_FILE, "w", encoding=ConstantVar.OUTPUT_FILE_ENC, newline=""
+    ) as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=ConstantVar.FIELD_NAMES)
         writer.writeheader()
 
         for client_info, products in report_data.items():
             for product_info, total_amount in products.items():
-                client_info_str = ','.join(client_info)
-                product_info_str = ','.join(product_info)
-                writer.writerow({
-                    'Client_Information': client_info_str,
-                    'Product_Information': product_info_str,
-                    'Total_Transaction_Amount': total_amount
-                })
+                client_info_str = ",".join(client_info)
+                product_info_str = ",".join(product_info)
+                writer.writerow(
+                    {
+                        "Client_Information": client_info_str,
+                        "Product_Information": product_info_str,
+                        "Total_Transaction_Amount": total_amount,
+                    }
+                )
