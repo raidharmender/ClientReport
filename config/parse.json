@@ -1,0 +1,177 @@
+{
+    "RECORD_CODE": {
+        "LENGTH": 3,
+        "START": 1,
+        "END": 3
+    },
+    "CLIENT_TYPE": {
+        "LENGTH": 4,
+        "START": 4,
+        "END": 7
+    },
+    "CLIENT_NUMBER": {
+        "LENGTH": 4,
+        "START": 8,
+        "END": 11
+    },
+    "ACCOUNT_NUMBER": {
+        "LENGTH": 4,
+        "START": 12,
+        "END": 15
+    },
+    "SUBACCOUNT_NUMBER": {
+        "LENGTH": 4,
+        "START": 16,
+        "END": 19
+    },
+    "OPPOSITE_PARTY_CODE": {
+        "LENGTH": 6,
+        "START": 20,
+        "END": 25
+    },
+    "PRODUCT_GROUP_CODE": {
+        "LENGTH": 2,
+        "START": 26,
+        "END": 27
+    },
+    "EXCHANGE_CODE": {
+        "LENGTH": 4,
+        "START": 28,
+        "END": 31
+    },
+    "SYMBOL": {
+        "LENGTH": 6,
+        "START": 32,
+        "END": 37
+    },
+    "EXPIRATION_DATE": {
+        "LENGTH": 8,
+        "START": 38,
+        "END": 45
+    },
+    "CURRENCY_CODE": {
+        "LENGTH": 3,
+        "START": 46,
+        "END": 48
+    },
+    "MOVEMENT_CODE": {
+        "LENGTH": 2,
+        "START": 49,
+        "END": 50
+    },
+    "BUY_SELL_CODE": {
+        "LENGTH": 1,
+        "START": 51,
+        "END": 51
+    },
+    "QUANTTTY_LONG_SIGN": {
+        "LENGTH": 1,
+        "START": 52,
+        "END": 52
+    },
+    "QUANTITY_LONG": {
+        "LENGTH": 10,
+        "START": 53,
+        "END": 62
+    },
+    "QUANTITY_SHORT_SIGN": {
+        "LENGTH": 1,
+        "START": 63,
+        "END": 63
+    },
+    "QUANTITY_SHORT": {
+        "LENGTH": 10,
+        "START": 64,
+        "END": 73
+    },
+    "EXCH_BROKER_FEE_DEC": {
+        "LENGTH": 12,
+        "START": 74,
+        "END": 85
+    },
+    "EXCH_BROKER_FEE_D_C": {
+        "LENGTH": 1,
+        "START": 86,
+        "END": 86
+    },
+    "ExCH_BROKER_FEE_CUR_CODE": {
+        "LENGTH": 3,
+        "START": 87,
+        "END": 89
+    },
+    "CLEARING_FEE_DEC": {
+        "LENGTH": 12,
+        "START": 90,
+        "END": 101
+    },
+    "CLEARING_FEE_D_C": {
+        "LENGTH": 1,
+        "START": 102,
+        "END": 102
+    },
+    "CLEARING_FEE_CUR_CODE": {
+        "LENGTH": 3,
+        "START": 103,
+        "END": 105
+    },
+    "COMMISSION": {
+        "LENGTH": 12,
+        "START": 106,
+        "END": 117
+    },
+    "COMMISSION_D_C": {
+        "LENGTH": 1,
+        "START": 118,
+        "END": 118
+    },
+    "COMMISSION_CUR_CODE": {
+        "LENGTH": 3,
+        "START": 119,
+        "END": 121
+    },
+    "TRANSACTION_DATE": {
+        "LENGTH": 8,
+        "START": 122,
+        "END": 129
+    },
+    "FUTURE_REFERENCE": {
+        "LENGTH": 6,
+        "START": 130,
+        "END": 135
+    },
+    "TICKET_NUMBER": {
+        "LENGTH": 6,
+        "START": 136,
+        "END": 141
+    },
+    "EXTERNAL_NUMBER": {
+        "LENGTH": 6,
+        "START": 142,
+        "END": 147
+    },
+    "TRANSACTION_PRICE_DEC": {
+        "LENGTH": 15,
+        "START": 148,
+        "END": 162
+    },
+    "TRADER_INITIALS": {
+        "LENGTH": 6,
+        "START": 163,
+        "END": 168
+    },
+    "OPPOSITE_TRADER_ID": {
+        "LENGTH": 7,
+        "START": 169,
+        "END": 175
+    },
+    "OPEN_CLOSE_CODE": {
+        "LENGTH": 1,
+        "START": 176,
+        "END": 176
+    },
+    "FILLER": {
+        "LENGTH": 127,
+        "START": 177,
+        "END": 303
+    }
+}
