@@ -70,7 +70,8 @@ def verify_config(conf_data: dict) -> bool:
 
 
 def generate_daily_summary(parsed_data: list) -> defaultdict:
-    """This function processes the parsed data to generate the daily summary
+    """
+    This function processes the parsed data to generate the daily summary
     report as a dictionary with client and product information as keys and
     total transaction amount as values.
 
@@ -78,14 +79,50 @@ def generate_daily_summary(parsed_data: list) -> defaultdict:
         parsed_data (list): List of rows read from the file
 
     Returns:
-        defaultdict: Client and product information as keys
-        and total transaction amount as values.
+        defaultdict: Client and product information as keys and total
+        transaction amount as values
+    >>> data = [{'RECORD_CODE': '315', 'CLIENT_TYPE': 'CL',
+    'CLIENT_NUMBER': '4321', 'ACCOUNT_NUMBER': '0002',
+    'SUBACCOUNT_NUMBER': '0001', 'OPPOSITE_PARTY_CODE': 'SGXDC',
+    'PRODUCT_GROUP_CODE': 'FU', 'EXCHANGE_CODE': 'SGX', 'SYMBOL': 'NK',
+    'EXPIRATION_DATE': '20100910', 'CURRENCY_CODE': 'JPY',
+    'MOVEMENT_CODE': '01', 'BUY_SELL_CODE': 'B', 'QUANTTTY_LONG_SIGN': '',
+    'QUANTITY_LONG': '0000000001', 'QUANTITY_SHORT_SIGN': '',
+    'QUANTITY_SHORT': '0000000000', 'EXCH_BROKER_FEE_DEC': '000000000060',
+    'EXCH_BROKER_FEE_D_C': 'D', 'ExCH_BROKER_FEE_CUR_CODE': 'USD',
+    'CLEARING_FEE_DEC': '000000000030', 'CLEARING_FEE_D_C': 'D',
+    'CLEARING_FEE_CUR_CODE': 'USD', 'COMMISSION': '000000000000',
+    'COMMISSION_D_C': 'D', 'COMMISSION_CUR_CODE': 'JPY',
+    'TRANSACTION_DATE': '20100820', 'FUTURE_REFERENCE': '001238',
+    'TICKET_NUMBER': '0', 'EXTERNAL_NUMBER': '688032',
+    'TRANSACTION_PRICE_DEC': '000092500000000', 'TRADER_INITIALS': '',
+    'OPPOSITE_TRADER_ID': '', 'OPEN_CLOSE_CODE': 'O', 'FILLER': ''},
+    {'RECORD_CODE': '315', 'CLIENT_TYPE': 'CL', 'CLIENT_NUMBER': '4321',
+    'ACCOUNT_NUMBER': '0002', 'SUBACCOUNT_NUMBER': '0001',
+    'OPPOSITE_PARTY_CODE': 'SGXDC', 'PRODUCT_GROUP_CODE': 'FU',
+    'EXCHANGE_CODE': 'SGX', 'SYMBOL': 'NK', 'EXPIRATION_DATE': '20100910',
+    'CURRENCY_CODE': 'JPY', 'MOVEMENT_CODE': '01', 'BUY_SELL_CODE': 'B',
+    'QUANTTTY_LONG_SIGN': '', 'QUANTITY_LONG': '0000000001',
+    'QUANTITY_SHORT_SIGN': '', 'QUANTITY_SHORT': '0000000000',
+    'EXCH_BROKER_FEE_DEC': '000000000060', 'EXCH_BROKER_FEE_D_C': 'D',
+    'ExCH_BROKER_FEE_CUR_CODE': 'USD', 'CLEARING_FEE_DEC': '000000000030',
+    'CLEARING_FEE_D_C': 'D', 'CLEARING_FEE_CUR_CODE': 'USD',
+    'COMMISSION': '000000000000', 'COMMISSION_D_C': 'D',
+    'COMMISSION_CUR_CODE': 'JPY', 'TRANSACTION_DATE': '20100820',
+    'FUTURE_REFERENCE': '001240', 'TICKET_NUMBER': '0',
+    'EXTERNAL_NUMBER': '688058', 'TRANSACTION_PRICE_DEC': '000092500000000',
+    'TRADER_INITIALS': '', 'OPPOSITE_TRADER_ID': '', 'OPEN_CLOSE_CODE': 'O',
+    'FILLER': ''}]
+    >>> summary = generate_daily_summary(data)
+    >>> len(summary)
+    1
     """
     summary = defaultdict(lambda: defaultdict(int))
 
     for record in parsed_data:
         client_info = tuple(record[field] for field in ConstantVar.CLIENT_INFO)
-        product_info = tuple(record[field] for field in ConstantVar.PRODUCT_INFO)
+        product_info = tuple(record[field]
+                             for field in ConstantVar.PRODUCT_INFO)
         quantity_long = int(record["QUANTITY_LONG"])
         quantity_short = int(record["QUANTITY_SHORT"])
         total_amount = quantity_long - quantity_short
@@ -102,7 +139,8 @@ def write_csv(report_data: dict):
         report_data (dict): _description_
     """
     with open(
-        ConstantVar.OUTPUT_FILE, "w", encoding=ConstantVar.OUTPUT_FILE_ENC, newline=""
+        ConstantVar.OUTPUT_FILE, "w",
+        encoding=ConstantVar.OUTPUT_FILE_ENC, newline=""
     ) as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=ConstantVar.FIELD_NAMES)
         writer.writeheader()
