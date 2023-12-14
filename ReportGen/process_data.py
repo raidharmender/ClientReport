@@ -5,7 +5,7 @@ Returns:
 from collections import defaultdict
 import json
 import csv
-from constant_vars import ConstantVar
+from ReportGen.constant_vars import ConstantVar
 
 
 def parse_fixed_width_file(file_path: str, cfg: dict) -> list:

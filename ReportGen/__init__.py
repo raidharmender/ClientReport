@@ -7,9 +7,9 @@ Returns:
 from flask import Flask
 from flask_restful import Api, Resource
 from flasgger import Swagger
-from constant_vars import ConstantVar
-from process_data import read_config, parse_fixed_width_file
-from process_data import generate_daily_summary, write_csv
+from ReportGen.constant_vars import ConstantVar
+from ReportGen.process_data import read_config, parse_fixed_width_file
+from ReportGen.process_data import generate_daily_summary, write_csv
 
 app = Flask(__name__)
 api = Api(app)
