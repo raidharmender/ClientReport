@@ -4,16 +4,16 @@ Returns:
     _type_: _description_
 """
 
-from flask import Flask
-from flask_restful import Api, Resource
-from flasgger import Swagger
 from ReportGen.constant_vars import ConstantVar
 from ReportGen.process_data import read_config, parse_fixed_width_file
 from ReportGen.process_data import generate_daily_summary, write_csv
+from ReportGen.instances import create_app, create_api, create_swg
 
-app = Flask(__name__)
-api = Api(app)
-swagger = Swagger(app)
+
+app = create_app()
+api = create_api(app)
+swagger = create_swg(app)
+
 
 @app.route("/")
 def index():
