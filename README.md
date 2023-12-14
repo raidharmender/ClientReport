@@ -14,3 +14,6 @@
 
 ### run the application 
 1. python3 -m flask --app ReportGen run --port 8000 --debug
+
+### Access the page and generate the report
+http://127.0.0.1:8000/
