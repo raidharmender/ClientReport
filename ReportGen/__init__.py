@@ -9,7 +9,7 @@ from ReportGen.process_data import read_config, parse_fixed_width_file
 from ReportGen.process_data import generate_daily_summary, write_csv
 from ReportGen.instances import create_app, create_api, create_swg
 
-
+# werkzeug.cached_property = werkzeug.utils.cached_property
 app = create_app()
 api = create_api(app)
 swagger = create_swg(app)

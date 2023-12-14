@@ -6,7 +6,8 @@ Returns:
 """
 
 from flask import Flask
-from flask_restful import Api
+# from flask_restful import Api
+from flask_restx import Api
 from flasgger import Swagger
 
 
@@ -28,7 +29,9 @@ def create_api(app_flask: Flask) -> Api:
     Returns:
         Api: _description_
     """
-    return Api(app_flask)
+    # return Api(app_flask)
+    return Api(app_flask, version='1.0',
+               title='Report Generation API', doc='/swagger')
 
 
 def create_swg(app_flask: Flask) -> Swagger:

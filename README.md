@@ -8,7 +8,9 @@
 1 flake8 .
 1 black --exclude=.venv,tests .
 
-###
+### Run tests
 1 python3 -m unittest
-1 pytest
-1 swagger
+
+
+### run the application 
+python3 -m flask --app ReportGen run --port 8000 --debug
