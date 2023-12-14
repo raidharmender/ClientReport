@@ -31,13 +31,25 @@ def parse_fixed_width_file(file_path: str, cfg: dict) -> list:
 
 
 def read_config(file: str) -> dict:
-    """Reads JSON file and return Python dict
+    """
+    Reads JSON file and returns Python dict
 
     Args:
         file (str): File with field details in JSON format
 
     Returns:
         dict: Dictionary data
+    >>> cfg = read_config('config/parse.json')
+    >>> isinstance(cfg, dict)
+    True
+    >>> 'Name' in cfg
+    True
+    >>> cfg['RECORD_CODE']['LENGTH']
+    3
+    >>> cfg['CLIENT_TYPE']['LENGTH']
+    4
+    >>> cfg['CLIENT_NUMBER']['LENGTH']
+    4
     """
     with open(file, "r", encoding=ConstantVar.CFG_FILE_ENC) as f:
         return json.load(f)

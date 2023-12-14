@@ -13,7 +13,7 @@ app.config["DEBUG_TB_HOSTS"] = ["dont-show-debug-toolbar"]
 class ReportGenTests(TestCase):
     """integration tests for the app"""
 
-    def test_color_form(self):
+    def test_report_download_status(self):
         with app.test_client() as client:
             resp = client.get("/")
             html = resp.get_data(as_text=True)
