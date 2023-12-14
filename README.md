@@ -10,6 +10,7 @@
 
 ### Run tests
 1. python3 -m unittest
+1. python -m doctest -v ReportGen/process_data.py 
 
 
 ### run the application 
