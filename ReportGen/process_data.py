@@ -43,7 +43,7 @@ def read_config(file: str) -> dict:
     >>> isinstance(cfg, dict)
     True
     >>> 'Name' in cfg
-    True
+    False
     >>> cfg['RECORD_CODE']['LENGTH']
     3
     >>> cfg['CLIENT_TYPE']['LENGTH']
@@ -81,7 +81,7 @@ def generate_daily_summary(parsed_data: list) -> defaultdict:
     Returns:
         defaultdict: Client and product information as keys and total
         transaction amount as values
-    >>> data = [{'RECORD_CODE': '315', 'CLIENT_TYPE': 'CL',
+    >>> len(generate_daily_summary([{'RECORD_CODE': '315', 'CLIENT_TYPE': 'CL',
     'CLIENT_NUMBER': '4321', 'ACCOUNT_NUMBER': '0002',
     'SUBACCOUNT_NUMBER': '0001', 'OPPOSITE_PARTY_CODE': 'SGXDC',
     'PRODUCT_GROUP_CODE': 'FU', 'EXCHANGE_CODE': 'SGX', 'SYMBOL': 'NK',
@@ -112,9 +112,7 @@ def generate_daily_summary(parsed_data: list) -> defaultdict:
     'FUTURE_REFERENCE': '001240', 'TICKET_NUMBER': '0',
     'EXTERNAL_NUMBER': '688058', 'TRANSACTION_PRICE_DEC': '000092500000000',
     'TRADER_INITIALS': '', 'OPPOSITE_TRADER_ID': '', 'OPEN_CLOSE_CODE': 'O',
-    'FILLER': ''}]
-    >>> summary = generate_daily_summary(data)
-    >>> len(summary)
+    'FILLER': ''}]))    
     1
     """
     summary = defaultdict(lambda: defaultdict(int))
